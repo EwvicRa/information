@@ -1,9 +1,8 @@
 from . import index_blu
-from flask import session
-
+from info import redis_store
 
 @index_blu.route("/")
 def index1():
-    session["name"] = "小米"
+    redis_store.set("weight", "187")
 
     return "Welcome my house"

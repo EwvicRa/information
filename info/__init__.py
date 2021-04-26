@@ -13,7 +13,7 @@ from config import config
 # 点进去SQLAchemy里面可以看到如果不传值，默认app=NOne，不为空才调用init_app
 
 db = SQLAlchemy()
-
+redis_store = None  # type:StrictRedis
 
 def create_log(config_name):
     # 设置日志的记录等级,
@@ -39,6 +39,7 @@ def create_app(config_name):  # 接收传递进来要选择的开发环境
     # 通过 app 初始化
     db.init_app(app)
     # 初始化 Redis 存储对象
+    global redis_store
     redis_store = StrictRedis(host=config[config_name].REDIS_HOST, port=config[config_name].REDIS_PORT)
     # 开启 CSRF 保护 , 只做服务器保护功能 还得自己写 cookie
     CSRFProtect(app)
