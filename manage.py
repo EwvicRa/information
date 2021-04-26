@@ -1,9 +1,7 @@
-from flask import  session
+from flask import session
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from info import app,db
-
-
+from info import app, db
 
 # 使用flask—script的命令格式操作flask，先连接一下
 manager = Manager(app)
