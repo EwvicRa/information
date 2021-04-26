@@ -5,7 +5,7 @@ from redis import StrictRedis
 # 扩展库里面的session  可以用来指定session保存的位置，点击扩展源码可查看
 from flask_session import Session
 from flask_script import Manager
-
+from flask_migrate import Migrate, MigrateCommand
 
 class Config(object):
     """项目的配置"""
@@ -49,6 +49,11 @@ Session(app)
 
 # 使用flask—script的命令格式操作flask，先连接一下
 manager = Manager(app)
+# 将app 与 db 关联
+Migrate(app, db)
+# 将迁移命令添加到manager中
+manager.add_command('db', MigrateCommand)
+
 
 @app.route("/")
 def index1():
