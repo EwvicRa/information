@@ -21,9 +21,9 @@ class Config(object):
     REDIS_HOST = "127.0.0.1"
     REDIS_PORT = 6379
 
-    # Session保存设置
+    # Session保存设置  指定 session 保存到 redis 中
     SESSION_TYPE = "redis"
-    # 开启session签名
+    # 开启session签名  让 cookie 中的 session_id 被加密签名处理
     SESSION_USE_SIGER = True
     # 指定Session 保存的redis，不指定他会帮你指定，这样redis就不能设置端口，地址了
     SESSION_REDIS = StrictRedis(host=REDIS_HOST, port=REDIS_PORT)
